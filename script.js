@@ -72,22 +72,138 @@ function animate() {
 animate();
 
 window.addEventListener('resize', () => {
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    initNeural();
 });
 
-// ── HERO 3D TILT & FLIP ──
+// ── NEURAL NETWORK HERO ANIMATION ──
+const neuralCanvas = document.getElementById('neural-canvas');
+if (neuralCanvas) {
+    const nctx = neuralCanvas.getContext('2d');
+    let nNodes = [];
+    const nNodeCount = window.innerWidth < 768 ? 15 : 35;
+
+    function initNeural() {
+        neuralCanvas.width = neuralCanvas.offsetWidth;
+        neuralCanvas.height = neuralCanvas.offsetHeight;
+        nNodes = [];
+        
+        // Central Agent Node
+        nNodes.push({
+            x: neuralCanvas.width / 2,
+            y: neuralCanvas.height / 2,
+            vx: 0,
+            vy: 0,
+            r: 4,
+            isAgent: true
+        });
+
+        for (let i = 0; i < nNodeCount; i++) {
+            nNodes.push({
+                x: Math.random() * neuralCanvas.width,
+                y: Math.random() * neuralCanvas.height,
+                vx: (Math.random() - 0.5) * 0.4,
+                vy: (Math.random() - 0.5) * 0.4,
+                r: Math.random() * 2 + 0.5,
+                isAgent: false
+            });
+        }
+    }
+
+    function drawNeural() {
+        nctx.clearRect(0, 0, neuralCanvas.width, neuralCanvas.height);
+        
+        nNodes.forEach((node, i) => {
+            if (!node.isAgent) {
+                node.x += node.vx;
+                node.y += node.vy;
+                if (node.x < 0 || node.x > neuralCanvas.width) node.vx *= -1;
+                if (node.y < 0 || node.y > neuralCanvas.height) node.vy *= -1;
+            }
+
+            nctx.beginPath();
+            nctx.arc(node.x, node.y, node.r, 0, Math.PI * 2);
+            nctx.fillStyle = node.isAgent ? 'var(--lime)' : 'rgba(184, 245, 0, 0.4)';
+            nctx.fill();
+
+            // Connections
+            nNodes.forEach((other, j) => {
+                if (i === j) return;
+                const dx = node.x - other.x;
+                const dy = node.y - other.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+
+                const maxDist = node.isAgent || other.isAgent ? 250 : 120;
+                if (dist < maxDist) {
+                    nctx.beginPath();
+                    nctx.strokeStyle = node.isAgent || other.isAgent 
+                        ? `rgba(184, 245, 0, ${0.2 * (1 - dist / maxDist)})` 
+                        : `rgba(184, 245, 0, ${0.05 * (1 - dist / maxDist)})`;
+                    nctx.lineWidth = node.isAgent || other.isAgent ? 1.5 : 0.5;
+                    nctx.moveTo(node.x, node.y);
+                    nctx.lineTo(other.x, other.y);
+                    nctx.stroke();
+
+                    // Pulse effect on connection
+                    if ((node.isAgent || other.isAgent) && Math.random() > 0.98) {
+                        nctx.beginPath();
+                        nctx.arc(node.x, node.y, node.r + 2, 0, Math.PI * 2);
+                        nctx.strokeStyle = 'var(--lime)';
+                        nctx.stroke();
+                    }
+                }
+            });
+        });
+        requestAnimationFrame(drawNeural);
+    }
+
+    initNeural();
+    drawNeural();
+}
+
+// ── HERO 3D TILT & PARALLAX ──
 const glassPanel = document.querySelector('.glass-panel');
+const heroContent = document.querySelector('.hero-content');
+const videoBg = document.querySelector('.video-bg');
 
 document.addEventListener('mousemove', (e) => {
-    const xAxis = (window.innerWidth / 2 - e.clientX) / 25;
-    const yAxis = (window.innerHeight / 2 - e.clientY) / 25;
+    const xAxis = (window.innerWidth / 2 - e.clientX) / 30;
+    const yAxis = (window.innerHeight / 2 - e.clientY) / 30;
+    
+    // Tilt the panel
     gsap.to(glassPanel, {
         rotateY: xAxis,
         rotateX: -yAxis,
-        duration: 0.5,
-        ease: "power2.out"
+        duration: 0.8,
+        ease: "power3.out"
+    });
+
+    // Parallax elements
+    const px = (e.clientX - window.innerWidth / 2) * 0.01;
+    const py = (e.clientY - window.innerHeight / 2) * 0.01;
+
+    gsap.to(heroContent, {
+        x: px * 3,
+        y: py * 3,
+        duration: 1.2,
+        ease: "power3.out"
+    });
+
+    gsap.to('.hero-perspective', {
+        x: -px,
+        y: -py,
+        duration: 2,
+        ease: "power3.out"
+    });
+
+    gsap.to(videoBg, {
+        scale: 1.1,
+        x: px * 0.5,
+        y: py * 0.5,
+        duration: 3,
+        ease: "power3.out"
     });
 });
 
