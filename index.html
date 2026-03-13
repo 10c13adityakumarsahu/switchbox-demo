@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Switchboard — Agentic B2B Marketplace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Geist:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+</head>
+
+<body>
+  <div id="canvas-container"></div>
+  <div class="video-bg">
+    <video autoplay muted loop playsinline id="hero-video" poster="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=82&w=2400">
+      <source src="https://player.vimeo.com/external/370331493.hd.mp4?s=7b0185981329112967667d4fdf8091a1&profile_id=172&oauth2_token_id=57447761" type="video/mp4">
+    </video>
+  </div>
+  <div id="bg-overlay"></div>
+
+  <div id="cur"></div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-top">
+      <a href="#" class="n-logo">
+        <div class="n-lm">
+          <svg viewBox="0 0 14 14" fill="none">
+            <path d="M1 7h12M7 1v12" stroke="white" stroke-width="1.8" stroke-linecap="round" />
+            <path d="M2 2l10 10M12 2L2 12" stroke="white" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
+        </div>
+        Switchboard
+      </a>
+      <div class="n-links">
+        <a href="#" class="n-link on">Marketplace</a>
+        <a href="#" class="n-link">For Vendors</a>
+        <a href="#" class="n-link">For Buyers</a>
+        <a href="#" class="n-link">Pricing</a>
+        <a href="#" class="n-link">API</a>
+      </div>
+      <div class="n-search">
+        <svg viewBox="0 0 16 16" fill="none">
+          <circle cx="7" cy="7" r="5" stroke="#7A7773" stroke-width="1.5" />
+          <path d="M11 11l3 3" stroke="#7A7773" stroke-width="1.5" stroke-linecap="round" />
+        </svg>
+        <span>Search 12,000+ vendors&hellip;</span>
+        <span class="n-kbd">⌘K</span>
+      </div>
+      <button class="btn-cta">List Your Business</button>
+    </div>
+
+    <!-- TICKER -->
+    <div class="ticker">
+      <div class="ticker-track">
+        <div class="ti">
+          <div class="ti-sep"></div>Agent query<div class="ti-sep"></div><b>ChatGPT Enterprise — 8 vendors
+            shortlisted</b>
+        </div>
+        <div class="ti">
+          <div class="ti-sep"></div>Escrow activated<div class="ti-sep"></div><b>$82,000 — Zenith Labs × Nova Agency</b>
+        </div>
+        <div class="ti">
+          <div class="ti-sep"></div>Profile updated<div class="ti-sep"></div><b>Meridian Design — score 87 → 94</b>
+        </div>
+        <div class="ti">
+          <div class="ti-sep"></div>Deal closed<div class="ti-sep"></div><b>$47,500 released — Stack Wizards</b>
+        </div>
+        <div class="ti">
+          <div class="ti-sep"></div>Agent bookings this month<div class="ti-sep"></div><b>3.2M API calls</b>
+        </div>
+        <div class="ti">
+          <div class="ti-sep"></div>New vendor<div class="ti-sep"></div><b>Apex Legal Partners — profile claimed</b>
+        </div>
+        <div class="ti">
+          <div class="ti-sep"></div>Agent query<div class="ti-sep"></div><b>ChatGPT Enterprise — 8 vendors
+            shortlisted</b>
+        </div>
+        <div class="ti">
+          <div class="ti-sep"></div>Escrow activated<div class="ti-sep"></div><b>$82,000 — Zenith Labs × Nova Agency</b>
+        </div>
+        <div class="ti">
+          <div class="ti-sep"></div>Profile updated<div class="ti-sep"></div><b>Meridian Design — score 87 → 94</b>
+        </div>
+        <div class="ti">
+          <div class="ti-sep"></div>Deal closed<div class="ti-sep"></div><b>$47,500 released — Stack Wizards</b>
+        </div>
+        <div class="ti">
+          <div class="ti-sep"></div>Agent bookings this month<div class="ti-sep"></div><b>3.2M API calls</b>
+        </div>
+        <div class="ti">
+          <div class="ti-sep"></div>New vendor<div class="ti-sep"></div><b>Apex Legal Partners — profile claimed</b>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-perspective">
+      <div class="hero-lines">
+        <svg viewBox="0 0 1000 1000" preserveAspectRatio="none">
+          <path class="hero-line-1" d="M0,200 Q500,0 1000,200" />
+          <path class="hero-line-2" d="M0,500 Q500,300 1000,500" />
+          <path class="hero-line-3" d="M0,800 Q500,600 1000,800" />
+        </svg>
+      </div>
+      <div class="glass-panel">
+        <div class="hero-content">
+          <div class="h-tag au d1">
+            <div class="h-tag-dot"></div>Agentic B2B Marketplace — Live
+          </div>
+          <h1 class="au d2">The marketplace<br>where <em>AI agents</em><br>close deals for you.</h1>
+          <p class="hero-p au d3">Enterprise procurement bots discover vendors, negotiate terms, and lock funds in escrow automatically. Your team reviews and approves.</p>
+          <div class="hero-actions au d4">
+            <a href="#marketplace" class="btn-primary">Browse Vendors</a>
+            <a href="#how" class="btn-secondary">How It Works</a>
+          </div>
+          
+          <div class="hero-metrics au d5">
+            <div class="hm">
+              <div class="hm-num">12,480</div>
+              <div class="hm-label">Verified Vendors</div>
+            </div>
+            <div class="hm">
+              <div class="hm-num">$48M</div>
+              <div class="hm-label">Held in Escrow</div>
+            </div>
+            <div class="hm">
+              <div class="hm-num">3.2M</div>
+              <div class="hm-label">Agent API Calls</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARKETPLACE -->
+  <section id="marketplace" class="mkt-section">
+    <div class="mkt-header">
+      <div class="mkt-h-left">
+        <div class="mkt-label">Vendor Marketplace</div>
+        <div class="mkt-title">Trending this week</div>
+      </div>
+    </div>
+
+    <div class="filter-bar">
+      <button class="fc on">All</button>
+      <button class="fc">Design & Brand</button>
+      <button class="fc">Engineering</button>
+      <button class="fc">Marketing</button>
+      <button class="fc">Legal</button>
+      <button class="fc">AI Services</button>
+      <button class="fc">Operations</button>
+      <div class="f-sep"></div>
+      <button class="fc">Escrow Ready</button>
+      <button class="fc">AI Verified</button>
+      <button class="f-sort">
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+          <path d="M1 3h10M3 6h6M5 9h2" />
+        </svg>
+        Sort: AI Score
+      </button>
+    </div>
+
+    <!-- FEATURED CARD -->
+    <div class="featured-card">
+      <div class="fc-left">
+        <div class="fc-badge-row">
+          <span class="vr-badge vb-ai">AI Top Pick</span>
+          <span class="vr-badge vb-top">Top Rated</span>
+          <span class="vr-badge vb-esc">Escrow Ready</span>
+        </div>
+        <div class="fc-name">Meridian Design Co.</div>
+        <div class="fc-cat">Brand Identity · UI/UX Design · Motion Design</div>
+        <div class="fc-desc">World-class brand identity and product design for Series A–C companies. Trusted by 40+
+          YC-backed startups. Our AI profile updates in real-time after every on-platform negotiation — enterprise
+          agents consistently route high-value briefs directly to us.</div>
+        <div class="fc-tags">
+          <span class="fc-tag">Brand Identity</span>
+          <span class="fc-tag">UI/UX</span>
+          <span class="fc-tag">Motion Design</span>
+          <span class="fc-tag">SaaS</span>
+          <span class="fc-tag">Fintech</span>
+          <span class="fc-tag">Series A–C</span>
+        </div>
+        <div class="ai-bar-row">
+          <span class="ai-bar-label">AI Score</span>
+          <div class="ai-bar">
+            <div class="ai-bar-fill" style="width:94%"></div>
+          </div>
+          <span class="ai-score">94 / 100</span>
+        </div>
+      </div>
+      <div class="fc-right">
+        <div
+          style="font-size:10px;font-weight:700;color:var(--ink4);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;">
+          Vendor Stats</div>
+        <div class="fc-stat"><span class="fc-sl">Hourly Rate</span><span class="fc-sv">$180 – $240</span></div>
+        <div class="fc-stat"><span class="fc-sl">Rating</span><span class="fc-sv">4.9 / 5.0 (284 reviews)</span></div>
+        <div class="fc-stat"><span class="fc-sl">Agent Deals / Month</span><span class="fc-sv hi">34 bookings</span>
+        </div>
+        <div class="fc-stat"><span class="fc-sl">Avg Deal Size</span><span class="fc-sv">$22,400</span></div>
+        <div class="fc-stat"><span class="fc-sl">Next Available</span><span class="fc-sv hi">March 18, 2026</span></div>
+        <div class="fc-stat"><span class="fc-sl">Escrow</span><span class="fc-sv hi">Protected</span></div>
+        <button class="fc-book">Request Booking</button>
+      </div>
+    </div>
+
+    <!-- TABLE -->
+    <table class="v-table">
+      <thead>
+        <tr>
+          <th>Vendor</th>
+          <th>Specialties</th>
+          <th>AI Score</th>
+          <th>Rating</th>
+          <th>Starting Price</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="td-vendor">
+              <div class="td-mark">SW</div>
+              <div>
+                <div class="td-vname">Stack Wizards</div>
+                <div class="td-vcat">Full-Stack Dev · Cloud</div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="td-tags"><span class="tt">React</span><span class="tt">Node.js</span><span class="tt">AWS</span>
+            </div>
+          </td>
+          <td>
+            <div class="score-cell">
+              <div class="score-bar">
+                <div class="score-fill" style="width:91%"></div>
+              </div>
+              <span class="score-num">91</span>
+            </div>
+          </td>
+          <td class="td-rating"><b>5.0</b> / 5.0 (89)</td>
+          <td class="td-price">from $9,000</td>
+          <td><span class="vr-badge vb-ai">AI Fav</span></td>
+          <td><button class="td-action">View <svg viewBox="0 0 10 10" fill="none" stroke="currentColor"
+                stroke-width="1.5" stroke-linecap="round">
+                <path d="M2 5h6M5 2l3 3-3 3" />
+              </svg></button></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="td-vendor">
+              <div class="td-mark">NF</div>
+              <div>
+                <div class="td-vname">Nova Films</div>
+                <div class="td-vcat">Video Production · Brand</div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="td-tags"><span class="tt">Video</span><span class="tt">Animation</span><span
+                class="tt">Social</span></div>
+          </td>
+          <td>
+            <div class="score-cell">
+              <div class="score-bar">
+                <div class="score-fill" style="width:88%"></div>
+              </div>
+              <span class="score-num">88</span>
+            </div>
+          </td>
+          <td class="td-rating"><b>4.9</b> / 5.0 (203)</td>
+          <td class="td-price">from $6,800</td>
+          <td><span class="vr-badge vb-esc">Escrow</span></td>
+          <td><button class="td-action">View <svg viewBox="0 0 10 10" fill="none" stroke="currentColor"
+                stroke-width="1.5" stroke-linecap="round">
+                <path d="M2 5h6M5 2l3 3-3 3" />
+              </svg></button></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="td-vendor">
+              <div class="td-mark">GM</div>
+              <div>
+                <div class="td-vname">Growth Mechanics</div>
+                <div class="td-vcat">Performance Marketing</div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="td-tags"><span class="tt">Paid Ads</span><span class="tt">SEO</span><span class="tt">CRO</span>
+            </div>
+          </td>
+          <td>
+            <div class="score-cell">
+              <div class="score-bar">
+                <div class="score-fill" style="width:82%"></div>
+              </div>
+              <span class="score-num">82</span>
+            </div>
+          </td>
+          <td class="td-rating"><b>4.8</b> / 5.0 (57)</td>
+          <td class="td-price">$3,200/mo</td>
+          <td><span class="vr-badge vb-new">New</span></td>
+          <td><button class="td-action">View <svg viewBox="0 0 10 10" fill="none" stroke="currentColor"
+                stroke-width="1.5" stroke-linecap="round">
+                <path d="M2 5h6M5 2l3 3-3 3" />
+              </svg></button></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="td-vendor">
+              <div class="td-mark">AL</div>
+              <div>
+                <div class="td-vname">Apex Legal Partners</div>
+                <div class="td-vcat">B2B Legal · IP Law</div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="td-tags"><span class="tt">Contracts</span><span class="tt">IP</span><span
+                class="tt">Compliance</span></div>
+          </td>
+          <td>
+            <div class="score-cell">
+              <div class="score-bar">
+                <div class="score-fill" style="width:79%"></div>
+              </div>
+              <span class="score-num">79</span>
+            </div>
+          </td>
+          <td class="td-rating"><b>4.9</b> / 5.0 (41)</td>
+          <td class="td-price">from $450/hr</td>
+          <td><span class="vr-badge vb-ai">AI Verified</span></td>
+          <td><button class="td-action">View <svg viewBox="0 0 10 10" fill="none" stroke="currentColor"
+                stroke-width="1.5" stroke-linecap="round">
+                <path d="M2 5h6M5 2l3 3-3 3" />
+              </svg></button></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="td-vendor">
+              <div class="td-mark">PX</div>
+              <div>
+                <div class="td-vname">Pixel & Co.</div>
+                <div class="td-vcat">Brand Design · Packaging</div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="td-tags"><span class="tt">Branding</span><span class="tt">Logo</span><span
+                class="tt">Print</span></div>
+          </td>
+          <td>
+            <div class="score-cell">
+              <div class="score-bar">
+                <div class="score-fill" style="width:76%"></div>
+              </div>
+              <span class="score-num">76</span>
+            </div>
+          </td>
+          <td class="td-rating"><b>4.9</b> / 5.0 (142)</td>
+          <td class="td-price">from $4,500</td>
+          <td><span class="vr-badge vb-top">Top Rated</span></td>
+          <td><button class="td-action">View <svg viewBox="0 0 10 10" fill="none" stroke="currentColor"
+                stroke-width="1.5" stroke-linecap="round">
+                <path d="M2 5h6M5 2l3 3-3 3" />
+              </svg></button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="text-align:center;padding-bottom:64px;">
+      <button class="btn-secondary" style="padding:12px 32px;font-size:14px;">Browse all 12,480 vendors</button>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how" class="hiw">
+    <div class="hiw-inner">
+      <div class="hiw-left">
+        <div>
+          <div class="mkt-label" style="margin-bottom:10px;">How It Works</div>
+          <h2>Built for the<br><em>agentic era</em><br>of procurement.</h2>
+          <p style="margin-top:14px;">A four-step loop where every conversation makes the platform smarter — and every
+            deal makes your vendor profile more discoverable.</p>
+        </div>
+      </div>
+      <div class="hiw-steps">
+        <div class="step">
+          <div class="step-n">Step 01</div>
+          <div class="step-icon"><svg viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="8" />
+              <path d="M21 21l-4.35-4.35" />
+            </svg></div>
+          <h3>Agent Discovers</h3>
+          <p>Enterprise AI bots — ChatGPT, Claude, custom procurement systems — query our MCP server and vector search
+            to shortlist vendors in milliseconds, around the clock.</p>
+        </div>
+        <div class="step">
+          <div class="step-n">Step 02</div>
+          <div class="step-icon"><svg viewBox="0 0 24 24">
+              <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+            </svg></div>
+          <h3>Negotiate On-Platform</h3>
+          <p>Buyer and vendor communicate via native chat or video. Every negotiation is parsed in real-time,
+            automatically enriching the vendor's AI profile and boosting discoverability.</p>
+        </div>
+        <div class="step">
+          <div class="step-n">Step 03</div>
+          <div class="step-icon"><svg viewBox="0 0 24 24">
+              <rect x="3" y="11" width="18" height="11" rx="2" />
+              <path d="M7 11V7a5 5 0 0110 0v4" />
+            </svg></div>
+          <h3>Funds Into Escrow</h3>
+          <p>Stripe-powered escrow locks payment to the exact SLA terms discussed in chat. No invoices, no off-platform
+            risk. Funds release automatically when milestones are met.</p>
+        </div>
+        <div class="step">
+          <div class="step-n">Step 04</div>
+          <div class="step-icon"><svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12" />
+            </svg></div>
+          <h3>One Click to Approve</h3>
+          <p>Your team gets a clean deal summary. One click approves and releases escrow. The AI profile updates — next
+            time, agents route even faster with richer vendor data.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIVE ACTIVITY -->
+  <section class="activity">
+    <div class="mkt-label">Platform Activity</div>
+    <div class="mkt-title" style="font-family:'DM Serif Display',serif;font-size:32px;letter-spacing:-.3px;">What's
+      happening right now</div>
+
+    <div class="activity-layout">
+      <div class="feed">
+        <div class="feed-header">
+          <span class="feed-label">Live Feed</span>
+          <div class="feed-live">
+            <div class="feed-dot"></div> Updating live
+          </div>
+        </div>
+        <div class="feed-item">
+          <div class="fi-t">
+            <div class="fi-d live"></div>12 sec ago
+          </div>
+          <div>
+            <div class="fi-ev">ChatGPT Enterprise queried 8 design vendors</div>
+            <div class="fi-detail">Series B fintech — brand identity brief, $40k budget</div>
+          </div>
+          <span class="fi-tag ft-ai">Agent Query</span>
+        </div>
+        <div class="feed-item">
+          <div class="fi-t">
+            <div class="fi-d live"></div>2 min ago
+          </div>
+          <div>
+            <div class="fi-ev">$82,000 placed into escrow</div>
+            <div class="fi-detail">Zenith Labs × Nova Agency — SLA-locked payment</div>
+          </div>
+          <span class="fi-tag ft-esc">Escrow Active</span>
+        </div>
+        <div class="feed-item">
+          <div class="fi-t">
+            <div class="fi-d live"></div>4 min ago
+          </div>
+          <div>
+            <div class="fi-ev">Meridian Design profile auto-updated</div>
+            <div class="fi-detail">AI parsed negotiation — "Motion Design" added, score 87 → 94</div>
+          </div>
+          <span class="fi-tag ft-prf">Profile Updated</span>
+        </div>
+        <div class="feed-item">
+          <div class="fi-t">
+            <div class="fi-d past"></div>11 min ago
+          </div>
+          <div>
+            <div class="fi-ev">Deal closed — $24,500 released from escrow</div>
+            <div class="fi-detail">Pixel & Co. delivered ahead of SLA — auto-released</div>
+          </div>
+          <span class="fi-tag ft-cls">Deal Closed</span>
+        </div>
+        <div class="feed-item">
+          <div class="fi-t">
+            <div class="fi-d past"></div>18 min ago
+          </div>
+          <div>
+            <div class="fi-ev">Claude Enterprise booked Stack Wizards</div>
+            <div class="fi-detail">Full-stack sprint — $18,000 — negotiated in 6 min on-platform</div>
+          </div>
+          <span class="fi-tag ft-ai">Agent Booking</span>
+        </div>
+        <div class="feed-item">
+          <div class="fi-t">
+            <div class="fi-d past"></div>25 min ago
+          </div>
+          <div>
+            <div class="fi-ev">Apex Legal Partners claimed their profile</div>
+            <div class="fi-detail">Discovered via shadow directory when an agent tried to book them</div>
+          </div>
+          <span class="fi-tag ft-prf">New Vendor</span>
+        </div>
+      </div>
+
+      <div class="side-stats">
+        <div class="ss-head">Platform — Today</div>
+        <div class="ss-body">
+          <div class="ss-stat">
+            <div class="ss-num">$1.4M</div>
+            <div class="ss-lbl">Value transacted today</div>
+            <div class="ss-chg">+18% vs yesterday</div>
+          </div>
+          <div class="mini-chart">
+            <div class="mb" style="height:28%"></div>
+            <div class="mb" style="height:42%"></div>
+            <div class="mb" style="height:38%"></div>
+            <div class="mb" style="height:60%"></div>
+            <div class="mb hi" style="height:52%"></div>
+            <div class="mb hi" style="height:74%"></div>
+            <div class="mb" style="height:66%"></div>
+            <div class="mb" style="height:80%"></div>
+            <div class="mb cur" style="height:90%"></div>
+          </div>
+          <div class="chart-label">Agent query volume — last 9 hours</div>
+          <div class="ss-stat">
+            <div class="ss-num">340</div>
+            <div class="ss-lbl">Agent queries this hour</div>
+            <div class="ss-chg">+42 in last 10 min</div>
+          </div>
+          <div class="ss-stat">
+            <div class="ss-num">94</div>
+            <div class="ss-lbl">Avg AI score — top vendors</div>
+            <div class="ss-chg">Updated 2 min ago</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTES -->
+  <section class="quotes">
+    <div class="mkt-label">What They're Saying</div>
+    <div class="mkt-title" style="font-family:'DM Serif Display',serif;font-size:32px;letter-spacing:-.3px;">Vendors and
+      buyers.</div>
+    <div class="quotes-grid">
+      <div class="q-card">
+        <div class="q-mark">&ldquo;</div>
+        <div class="q-text">My profile updates itself after every negotiation. I woke up to <strong>four AI agent
+            leads</strong> and a $12k project request. Didn't touch a thing.</div>
+        <div class="q-attr">
+          <div class="q-av">JK</div>
+          <div>
+            <div class="q-name">Jordan Kim</div>
+            <div class="q-role">Design Lead · Freelance</div>
+          </div>
+        </div>
+      </div>
+      <div class="q-card">
+        <div class="q-mark">&ldquo;</div>
+        <div class="q-text">We use Switchboard as our entire procurement layer. Our agent shortlists vendors and
+          <strong>escrows funds before I finish my morning coffee.</strong> A genuinely different era of B2B.</div>
+        <div class="q-attr">
+          <div class="q-av">RP</div>
+          <div>
+            <div class="q-name">Rohan Patel</div>
+            <div class="q-role">CTO · Velo Labs</div>
+          </div>
+        </div>
+      </div>
+      <div class="q-card">
+        <div class="q-mark">&ldquo;</div>
+        <div class="q-text">The escrow feature is non-negotiable for us now. Sent $50k through Switchboard last quarter.
+          <strong>Zero friction. Zero chasing invoices.</strong> No comparison.</div>
+        <div class="q-attr">
+          <div class="q-av">SL</div>
+          <div>
+            <div class="q-name">Sofia Lim</div>
+            <div class="q-role">Founder · Orbit Ventures</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing">
+    <div class="mkt-label">Pricing</div>
+    <div class="mkt-title" style="font-family:'DM Serif Display',serif;font-size:32px;letter-spacing:-.3px;">Simple.
+      Honest. Scales with you.</div>
+    <div class="price-grid">
+      <div class="pc">
+        <div class="pc-tier">Starter</div>
+        <div class="pc-price">$0<sub>/mo</sub></div>
+        <div class="pc-desc">Get discovered by AI agents immediately. No credit card required.</div>
+        <div class="pc-div"></div>
+        <div class="pc-feats">
+          <div class="pf"><span class="pf-val">Basic vendor profile</span>, listed in AI agent search</div>
+          <div class="pf"><span class="pf-val">5 active leads</span> at a time</div>
+          <div class="pf"><span class="pf-val">Standard escrow</span> at 2% fee</div>
+          <div class="pf"><span class="pf-val">Basic analytics</span> dashboard</div>
+        </div>
+        <button class="pc-btn">Get started free</button>
+      </div>
+      <div class="pc feat">
+        <div class="pc-popular">Most Popular</div>
+        <div class="pc-tier">Pro</div>
+        <div class="pc-price">$99<sub>/mo</sub></div>
+        <div class="pc-desc">The profile that sells while you sleep. For vendors serious about AI-driven lead flow.
+        </div>
+        <div class="pc-div"></div>
+        <div class="pc-feats">
+          <div class="pf"><span class="pf-val">Auto-updating AI profile</span> parsed from negotiations</div>
+          <div class="pf"><span class="pf-val">Priority discoverability</span> ranking in agent search</div>
+          <div class="pf"><span class="pf-val">Unlimited leads</span> — no cap</div>
+          <div class="pf"><span class="pf-val">Reduced escrow fee</span> at 0.8%</div>
+          <div class="pf"><span class="pf-val">Native chat + video</span> negotiation tools</div>
+          <div class="pf"><span class="pf-val">App Store access</span> — install custom modules</div>
+        </div>
+        <button class="pc-btn">Start Pro — $99/mo</button>
+      </div>
+      <div class="pc">
+        <div class="pc-tier">Enterprise</div>
+        <div class="pc-price">Custom</div>
+        <div class="pc-desc">Multi-storefront agencies and enterprise buyers with dedicated AI procurement agents.</div>
+        <div class="pc-div"></div>
+        <div class="pc-feats">
+          <div class="pf"><span class="pf-val">Multi-storefront</span> management</div>
+          <div class="pf"><span class="pf-val">Dedicated MCP endpoint</span> and OpenAPI schema</div>
+          <div class="pf"><span class="pf-val">Custom escrow terms</span> and SLA structure</div>
+          <div class="pf"><span class="pf-val">BYOL</span> — build custom storefront apps</div>
+          <div class="pf"><span class="pf-val">Dedicated support</span> with SLA guarantee</div>
+        </div>
+        <button class="pc-btn">Talk to sales</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <div class="cta-left">
+        <h2>Ready to let AI agents work the room for you?</h2>
+        <p>Join 12,480 vendors being discovered by enterprise AI buyers — 24 hours a day, every day.</p>
+      </div>
+      <div class="cta-right">
+        <a href="#" class="btn-lime">Claim Your Profile</a>
+        <a href="#" class="btn-ghost-light">Watch the Demo</a>
+      </div>
+      <div class="cta-ring1"></div>
+      <div class="cta-ring2"></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="ft-inner">
+      <div class="ft-brand">
+        <div class="ft-logo">
+          <div class="lm"><svg viewBox="0 0 14 14" fill="none">
+              <path d="M1 7h12M7 1v12M2 2l10 10M12 2L2 12" stroke="white" stroke-width="1.8" stroke-linecap="round" />
+            </svg></div>
+          Switchboard
+        </div>
+        <p>The zero-trust, dual-interface B2B marketplace built for the agentic economy. AI agents discover. Humans
+          approve.</p>
+      </div>
+      <div class="ft-col">
+        <h4>Marketplace</h4>
+        <a href="#">Browse Vendors</a>
+        <a href="#">Categories</a>
+        <a href="#">Trending</a>
+        <a href="#">AI Agent Search</a>
+        <a href="#">App Store</a>
+      </div>
+      <div class="ft-col">
+        <h4>Vendors</h4>
+        <a href="#">Claim Profile</a>
+        <a href="#">Dashboard</a>
+        <a href="#">Pricing</a>
+        <a href="#">MCP & API Docs</a>
+        <a href="#">Status</a>
+      </div>
+      <div class="ft-col">
+        <h4>Company</h4>
+        <a href="#">About</a>
+        <a href="#">Blog</a>
+        <a href="#">Careers</a>
+        <a href="#">Press</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span>© 2026 Switchboard Inc. All rights reserved.</span>
+      <div class="status-chip">
+        <div class="status-dot"></div> All systems operational
+      </div>
+      <div style="display:flex;gap:20px;">
+        <a href="#" style="color:var(--ink4);text-decoration:none;">Privacy</a>
+        <a href="#" style="color:var(--ink4);text-decoration:none;">Terms</a>
+        <a href="#" style="color:var(--ink4);text-decoration:none;">Cookies</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
