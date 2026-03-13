@@ -154,7 +154,7 @@
       align-items: center;
       gap: 10px;
       text-decoration: none;
-      color: var(--ink);
+      color: var(--white);
       font-family: 'DM Serif Display', serif;
       font-size: 20px;
       letter-spacing: -.3px;
@@ -164,11 +164,12 @@
     .n-lm {
       width: 28px;
       height: 28px;
-      background: var(--ink);
+      background: var(--lime);
       border-radius: 6px;
       display: flex;
       align-items: center;
       justify-content: center;
+      color: #000;
     }
 
     .n-lm svg {
@@ -194,12 +195,12 @@
     }
 
     .n-link:hover {
-      background: var(--cream2);
-      color: var(--ink);
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--white);
     }
 
     .n-link.on {
-      color: var(--ink);
+      color: var(--lime);
       font-weight: 600;
     }
 
@@ -1857,18 +1858,19 @@
       gap: 9px;
       font-family: 'DM Serif Display', serif;
       font-size: 18px;
-      color: var(--ink);
+      color: var(--white);
       margin-bottom: 12px;
     }
 
     .ft-logo .lm {
       width: 24px;
       height: 24px;
-      background: var(--ink);
+      background: var(--lime);
       border-radius: 5px;
       display: flex;
       align-items: center;
       justify-content: center;
+      color: #000;
     }
 
     .ft-logo .lm svg {
@@ -1902,7 +1904,7 @@
     }
 
     .ft-col a:hover {
-      color: var(--ink);
+      color: var(--lime);
     }
 
     .ft-bottom {
@@ -1982,7 +1984,18 @@
       }
 
       .hiw-inner {
-        padding: 30px;
+        grid-template-columns: 1fr;
+        padding: 0;
+      }
+
+      .hiw-left {
+        padding: 40px 32px;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .hiw-steps {
+        grid-template-columns: 1fr 1fr;
       }
 
       .activity-layout {
@@ -2032,16 +2045,34 @@
       }
 
       .nav-top {
-        padding: 0 20px;
+        padding: 0 16px;
+        height: 60px;
+      }
+
+      .hero {
+        padding-top: 60px;
+        min-height: auto;
+      }
+
+      .hero-perspective {
+        padding: 12px;
+        width: 100%;
+      }
+
+      .glass-panel {
+        padding: 40px 20px;
+        border-radius: 24px;
       }
 
       .hero h1 {
-        font-size: 42px;
+        font-size: 34px;
         letter-spacing: -1px;
+        line-height: 1.1;
       }
 
       .hero-p {
-        font-size: 16px;
+        font-size: 15px;
+        margin-bottom: 30px;
       }
 
       .hero-actions {
@@ -2054,51 +2085,137 @@
       .hero-actions .btn-secondary {
         width: 100%;
         text-align: center;
+        padding: 14px 20px;
+        font-size: 14px;
       }
 
       .hero-metrics {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 12px;
+        margin-top: 30px;
+      }
+
+      .hm {
+          padding: 16px;
+      }
+
+      .featured-card {
+        padding: 24px;
+        grid-template-columns: 1fr;
+        gap: 24px;
+        border-radius: 20px;
+      }
+
+      .fc-name {
+          font-size: 22px;
+      }
+
+      .fc-right {
+          padding: 20px;
       }
 
       .v-table {
         display: block;
-        overflow-x: auto;
+        width: 100%;
       }
 
-      .v-table thead {
-        display: none;
+      .v-table tbody {
+          display: block;
       }
 
       .v-table tr {
         display: block;
-        background: rgba(255, 255, 255, 0.03);
+        background: rgba(255, 255, 255, 0.02);
         margin-bottom: 16px;
-        padding: 16px;
-        border-radius: 16px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
       }
 
       .v-table td {
         display: flex;
         justify-content: space-between;
-        padding: 8px 0;
-        border: none;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .v-table td:last-child {
+          border-bottom: none;
       }
 
       .v-table td::before {
         content: attr(data-label);
         font-weight: 700;
-        font-size: 11px;
-        color: rgba(255, 255, 255, 0.5);
+        font-size: 10px;
+        color: rgba(255, 255, 255, 0.4);
         text-transform: uppercase;
+        letter-spacing: 0.05em;
       }
 
       .cta-inner {
-        padding: 40px 24px;
+        padding: 48px 24px;
+        border-radius: 32px;
       }
       
       .cta-left h2 {
-          font-size: 32px;
+          font-size: 28px;
+      }
+
+      .activity {
+          padding: 40px 16px;
+      }
+
+      .quotes {
+          padding: 60px 16px;
+      }
+
+      .pricing {
+          padding: 60px 16px;
+      }
+
+      .hiw-steps {
+          grid-template-columns: 1fr;
+      }
+
+      .step {
+          padding: 32px 24px;
+          border-right: none;
+      }
+
+      .step:nth-child(n+1) {
+          border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .step:last-child {
+          border-bottom: none;
+      }
+
+      .ft-bottom {
+          flex-direction: column;
+          gap: 16px;
+          text-align: center;
+      }
+
+      .filter-bar {
+          flex-wrap: nowrap;
+          overflow-x: auto;
+          padding-bottom: 12px;
+          -webkit-overflow-scrolling: touch;
+          justify-content: flex-start;
+          gap: 8px;
+          margin: 0 -16px 24px;
+          padding-left: 16px;
+          padding-right: 16px;
+      }
+
+      .filter-bar::-webkit-scrollbar {
+          display: none;
+      }
+
+      .fc {
+          white-space: nowrap;
+          padding: 8px 16px;
+          font-size: 12px;
       }
     }
