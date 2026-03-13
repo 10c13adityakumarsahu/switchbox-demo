@@ -82,7 +82,7 @@ if (neuralCanvas) {
 
             nctx.beginPath();
             nctx.arc(node.x, node.y, node.r, 0, Math.PI * 2);
-            nctx.fillStyle = node.isAgent ? 'var(--lime)' : 'rgba(184, 245, 0, 0.4)';
+            nctx.fillStyle = node.isAgent ? 'var(--lime)' : 'rgba(37, 99, 235, 0.4)';
             nctx.fill();
 
             // Connections
@@ -96,8 +96,8 @@ if (neuralCanvas) {
                 if (dist < maxDist) {
                     nctx.beginPath();
                     nctx.strokeStyle = node.isAgent || other.isAgent 
-                        ? `rgba(184, 245, 0, ${0.2 * (1 - dist / maxDist)})` 
-                        : `rgba(184, 245, 0, ${0.05 * (1 - dist / maxDist)})`;
+                        ? `rgba(37, 99, 235, ${0.2 * (1 - dist / maxDist)})` 
+                        : `rgba(37, 99, 235, ${0.05 * (1 - dist / maxDist)})`;
                     nctx.lineWidth = node.isAgent || other.isAgent ? 1.5 : 0.5;
                     nctx.moveTo(node.x, node.y);
                     nctx.lineTo(other.x, other.y);
