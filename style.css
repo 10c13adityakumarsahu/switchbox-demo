@@ -23,9 +23,9 @@
       --ink4: rgba(0, 0, 0, 0.5);
       --rule: rgba(0, 0, 0, 0.08);
       --rule2: rgba(0, 0, 0, 0.04);
-      --lime: #2563eb;
+      --lime: #84cc16;
       /* Subtler lime for light theme */
-      --lime2: rgba(37, 99, 235, 0.15);
+      --lime2: rgba(132, 204, 22, 0.15);
       --white: #000000;
       --r6: 12px;
       --r10: 16px;
@@ -214,11 +214,8 @@
     }
 
     .n-link:hover {
-      background: rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: var(--lime);
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--white);
     }
 
     .n-link.on {
@@ -269,8 +266,8 @@
     }
 
     .btn-cta {
-      background: linear-gradient(135deg, #2563eb, #3b82f6);
-      color: #fff;
+      background: var(--lime);
+      color: #000;
       padding: 10px 24px;
       border-radius: 999px;
       font-size: 13px;
@@ -282,13 +279,8 @@
     }
 
     .btn-cta:hover {
-      background: rgba(37, 99, 235, 0.2);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(37, 99, 235, 0.3);
-      color: var(--lime);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.2);
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 0 30px rgba(184, 245, 0, 0.3);
     }
 
     /* TICKER */
@@ -429,7 +421,7 @@
       height: 7px;
       border-radius: 50%;
       background: var(--lime);
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
+      box-shadow: 0 0 0 3px rgba(184, 245, 0, 0.3);
       animation: pulse 2s ease-in-out infinite;
     }
 
@@ -437,11 +429,11 @@
 
       0%,
       100% {
-        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
+        box-shadow: 0 0 0 3px rgba(184, 245, 0, 0.3);
       }
 
       50% {
-        box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.1);
+        box-shadow: 0 0 0 6px rgba(184, 245, 0, 0.1);
       }
     }
 
@@ -478,8 +470,8 @@
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, #2563eb, #3b82f6);
-      color: #fff;
+      background: var(--lime);
+      color: #000;
       padding: 16px 40px;
       border-radius: 999px;
       font-size: 16px;
@@ -490,12 +482,12 @@
       transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
       text-decoration: none;
       display: inline-block;
-      box-shadow: 0 0 20px rgba(37, 99, 235, 0.2);
+      box-shadow: 0 0 20px rgba(184, 245, 0, 0.2);
     }
 
     .btn-primary:hover {
       transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 10px 40px rgba(37, 99, 235, 0.4);
+      box-shadow: 0 10px 40px rgba(184, 245, 0, 0.4);
     }
 
     .btn-secondary {
@@ -670,9 +662,9 @@
     }
 
     .vb-ai {
-      background: rgba(37, 99, 235, 0.15);
+      background: rgba(184, 245, 0, 0.15);
       color: var(--lime);
-      border: 1px solid rgba(37, 99, 235, 0.25);
+      border: 1px solid rgba(184, 245, 0, 0.25);
     }
 
     .vb-top {
@@ -682,9 +674,9 @@
     }
 
     .vb-esc {
-      background: rgba(107, 114, 128, 0.1);
-      color: #9ca3af;
-      border: 1px solid rgba(107, 114, 128, 0.2);
+      background: rgba(0, 200, 100, 0.1);
+      color: #00ff88;
+      border: 1px solid rgba(0, 200, 100, 0.2);
     }
 
     .vb-new {
@@ -819,10 +811,10 @@
     }
 
     .fc.on {
-      background: linear-gradient(135deg, #2563eb, #3b82f6);
-      color: #fff;
-      border-color: transparent;
-      box-shadow: 0 0 20px rgba(37, 99, 235, 0.2);
+      background: var(--lime);
+      color: #000;
+      border-color: var(--lime);
+      box-shadow: 0 0 20px rgba(184, 245, 0, 0.2);
     }
 
     .f-sep {
@@ -1169,7 +1161,7 @@
     .ai-bar-fill {
       height: 100%;
       border-radius: 2px;
-      background: linear-gradient(90deg, var(--lime), rgba(37, 99, 235, .4));
+      background: linear-gradient(90deg, var(--lime), rgba(184, 245, 0, .4));
     }
 
     .ai-score {
@@ -1216,7 +1208,7 @@
     }
 
     .fc-sv.hi {
-      color: #6b7280;
+      color: #1a7a40;
     }
 
     .fc-book {
@@ -1482,9 +1474,9 @@
     }
 
     .ft-cls {
-      background: rgba(37, 99, 235, 0.1);
+      background: rgba(184, 245, 0, 0.1);
       color: var(--lime);
-      border: 1px solid rgba(37, 99, 235, 0.2);
+      border: 1px solid rgba(184, 245, 0, 0.2);
     }
 
     /* side stats */
@@ -1539,7 +1531,7 @@
 
     .ss-chg {
       font-size: 11px;
-      color: #6b7280;
+      color: #1a7a40;
       font-weight: 600;
       margin-top: 2px;
     }
@@ -1650,7 +1642,7 @@
     }
 
     .q-text strong {
-      color: #6b7280;
+      color: #1a7a40;
       font-weight: 600;
     }
 
@@ -1742,7 +1734,7 @@
     }
 
     .pc.feat {
-      background: rgba(37, 99, 235, 0.05);
+      background: rgba(184, 245, 0, 0.05);
       border-color: var(--lime);
     }
 
@@ -1763,9 +1755,9 @@
     }
 
     .pc.feat .pc-btn {
-      background: linear-gradient(135deg, #2563eb, #3b82f6) !important;
-      color: #fff !important;
-      border-color: transparent !important;
+      background: var(--lime) !important;
+      color: var(--ink) !important;
+      border-color: var(--lime) !important;
     }
 
     .pc.feat .pc-popular {
@@ -1864,10 +1856,10 @@
     }
 
     .pc-btn:hover {
-      background: linear-gradient(135deg, #2563eb, #3b82f6);
-      color: #fff;
-      border-color: transparent;
-      box-shadow: 0 0 20px rgba(37, 99, 235, 0.3);
+      background: var(--lime);
+      color: #000;
+      border-color: var(--lime);
+      box-shadow: 0 0 20px rgba(184, 245, 0, 0.3);
     }
 
     /* ── CTA ── */
@@ -1876,7 +1868,7 @@
     }
 
     .cta-inner {
-      background: linear-gradient(135deg, rgba(37, 99, 235, 0.15) 0%, rgba(20, 20, 20, 0.3) 100%);
+      background: linear-gradient(135deg, rgba(184, 245, 0, 0.15) 0%, rgba(20, 20, 20, 0.3) 100%);
       backdrop-filter: blur(50px);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 48px;
@@ -1936,8 +1928,8 @@
     }
 
     .btn-lime {
-      background: linear-gradient(135deg, #2563eb, #3b82f6);
-      color: #fff;
+      background: var(--lime);
+      color: #000;
       padding: 16px 36px;
       border-radius: 999px;
       font-size: 15px;
@@ -1950,7 +1942,7 @@
 
     .btn-lime:hover {
       transform: translateY(-3px);
-      box-shadow: 0 0 30px rgba(37, 99, 235, 0.4);
+      box-shadow: 0 0 30px rgba(184, 245, 0, 0.4);
     }
 
     .btn-ghost-light {
