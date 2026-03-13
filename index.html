@@ -17,15 +17,8 @@
 </head>
 
 <body>
-  <div id="canvas-container"></div>
-  <div class="video-bg">
-    <video autoplay muted loop playsinline id="hero-video" poster="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=82&w=2400">
-      <source src="https://player.vimeo.com/external/370331493.hd.mp4?s=7b0185981329112967667d4fdf8091a1&profile_id=172&oauth2_token_id=57447761" type="video/mp4">
-    </video>
-  </div>
-  <div id="bg-overlay"></div>
 
-  <div id="cur"></div>
+
 
   <!-- NAV -->
   <nav>
@@ -104,6 +97,11 @@
 
   <!-- HERO -->
   <section class="hero">
+    <div class="video-hero-container">
+      <video autoplay muted loop playsinline id="hero-video">
+        <source src="assets/background/12778084_1920_1080_30fps.mp4" type="video/mp4">
+      </video>
+    </div>
     <div class="hero-perspective">
       <div class="hero-lines">
         <svg viewBox="0 0 1000 1000" preserveAspectRatio="none">
@@ -115,16 +113,17 @@
       <canvas id="neural-canvas"></canvas>
       <div class="glass-panel">
         <div class="hero-content">
-          <div class="h-tag au d1">
+          <div class="h-tag">
             <div class="h-tag-dot"></div>Agentic B2B Marketplace — Live
           </div>
-          <h1 class="au d2">The marketplace<br>where <em>AI agents</em><br>close deals for you.</h1>
-          <p class="hero-p au d3">Enterprise procurement bots discover vendors, negotiate terms, and lock funds in escrow automatically. Your team reviews and approves.</p>
-          <div class="hero-actions au d4">
+          <h1 id="hero-title">The marketplace<br>where <em>AI agents</em><br>close deals for you.</h1>
+          <p class="hero-p">Enterprise procurement bots discover vendors, negotiate terms, and lock funds in escrow
+            automatically. Your team reviews and approves.</p>
+          <div class="hero-actions">
             <a href="#marketplace" class="btn-primary">Browse Vendors</a>
             <a href="#how" class="btn-secondary">How It Works</a>
           </div>
-          
+
           <div class="hero-metrics au d5">
             <div class="hm">
               <div class="hm-num">12,480</div>
@@ -255,8 +254,8 @@
           <td data-label="Rating" class="td-rating"><b>5.0</b> / 5.0 (89)</td>
           <td data-label="Starting Price" class="td-price">from $9,000</td>
           <td data-label="Status"><span class="vr-badge vb-ai">AI Fav</span></td>
-          <td data-label="Action"><button class="td-action">View <svg viewBox="0 0 10 10" fill="none" stroke="currentColor"
-                stroke-width="1.5" stroke-linecap="round">
+          <td data-label="Action"><button class="td-action">View <svg viewBox="0 0 10 10" fill="none"
+                stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
                 <path d="M2 5h6M5 2l3 3-3 3" />
               </svg></button></td>
         </tr>
@@ -285,8 +284,8 @@
           <td data-label="Rating" class="td-rating"><b>4.9</b> / 5.0 (203)</td>
           <td data-label="Starting Price" class="td-price">from $6,800</td>
           <td data-label="Status"><span class="vr-badge vb-esc">Escrow</span></td>
-          <td data-label="Action"><button class="td-action">View <svg viewBox="0 0 10 10" fill="none" stroke="currentColor"
-                stroke-width="1.5" stroke-linecap="round">
+          <td data-label="Action"><button class="td-action">View <svg viewBox="0 0 10 10" fill="none"
+                stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
                 <path d="M2 5h6M5 2l3 3-3 3" />
               </svg></button></td>
         </tr>
@@ -316,8 +315,8 @@
           <td data-label="Rating" class="td-rating"><b>4.8</b> / 5.0 (57)</td>
           <td data-label="Starting Price" class="td-price">$3,200/mo</td>
           <td data-label="Status"><span class="vr-badge vb-new">New</span></td>
-          <td data-label="Action"><button class="td-action">View <svg viewBox="0 0 10 10" fill="none" stroke="currentColor"
-                stroke-width="1.5" stroke-linecap="round">
+          <td data-label="Action"><button class="td-action">View <svg viewBox="0 0 10 10" fill="none"
+                stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
                 <path d="M2 5h6M5 2l3 3-3 3" />
               </svg></button></td>
         </tr>
@@ -346,8 +345,8 @@
           <td data-label="Rating" class="td-rating"><b>4.9</b> / 5.0 (41)</td>
           <td data-label="Starting Price" class="td-price">from $450/hr</td>
           <td data-label="Status"><span class="vr-badge vb-ai">AI Verified</span></td>
-          <td data-label="Action"><button class="td-action">View <svg viewBox="0 0 10 10" fill="none" stroke="currentColor"
-                stroke-width="1.5" stroke-linecap="round">
+          <td data-label="Action"><button class="td-action">View <svg viewBox="0 0 10 10" fill="none"
+                stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
                 <path d="M2 5h6M5 2l3 3-3 3" />
               </svg></button></td>
         </tr>
@@ -376,8 +375,8 @@
           <td data-label="Rating" class="td-rating"><b>4.9</b> / 5.0 (142)</td>
           <td data-label="Starting Price" class="td-price">from $4,500</td>
           <td data-label="Status"><span class="vr-badge vb-top">Top Rated</span></td>
-          <td data-label="Action"><button class="td-action">View <svg viewBox="0 0 10 10" fill="none" stroke="currentColor"
-                stroke-width="1.5" stroke-linecap="round">
+          <td data-label="Action"><button class="td-action">View <svg viewBox="0 0 10 10" fill="none"
+                stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
                 <path d="M2 5h6M5 2l3 3-3 3" />
               </svg></button></td>
         </tr>
@@ -575,7 +574,8 @@
       <div class="q-card">
         <div class="q-mark">&ldquo;</div>
         <div class="q-text">We use Switchboard as our entire procurement layer. Our agent shortlists vendors and
-          <strong>escrows funds before I finish my morning coffee.</strong> A genuinely different era of B2B.</div>
+          <strong>escrows funds before I finish my morning coffee.</strong> A genuinely different era of B2B.
+        </div>
         <div class="q-attr">
           <div class="q-av">RP</div>
           <div>
@@ -587,7 +587,8 @@
       <div class="q-card">
         <div class="q-mark">&ldquo;</div>
         <div class="q-text">The escrow feature is non-negotiable for us now. Sent $50k through Switchboard last quarter.
-          <strong>Zero friction. Zero chasing invoices.</strong> No comparison.</div>
+          <strong>Zero friction. Zero chasing invoices.</strong> No comparison.
+        </div>
         <div class="q-attr">
           <div class="q-av">SL</div>
           <div>

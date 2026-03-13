@@ -15,66 +15,23 @@ gsap.ticker.add((time) => {
 });
 gsap.ticker.lagSmoothing(0);
 
-// ── CUSTOM CURSOR ──
+// ── NO CUSTOM CURSOR ──
 const cur = document.getElementById('cur');
-document.addEventListener('mousemove', e => {
-  gsap.to(cur, {
-    x: e.clientX,
-    y: e.clientY,
-    duration: 0.1,
-    ease: "power2.out"
-  });
+if (cur) cur.style.display = 'none';
+
+// ── HERO VIDEO PARALLAX ──
+gsap.to(".video-hero-container video", {
+    scrollTrigger: {
+        trigger: ".hero",
+        start: "top top",
+        end: "bottom top",
+        scrub: true
+    },
+    y: 150,
+    ease: "none"
 });
-
-// ── THREE.JS BACKGROUND (PREMIUM WAVE) ──
-const container = document.getElementById('canvas-container');
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-container.appendChild(renderer.domElement);
-
-const geometry = new THREE.PlaneGeometry(150, 150, 100, 100);
-const material = new THREE.MeshBasicMaterial({
-  color: 0x111010,
-  wireframe: true,
-  transparent: true,
-  opacity: 0.05
-});
-const plane = new THREE.Mesh(geometry, material);
-plane.rotation.x = -Math.PI / 2.5;
-plane.position.y = -20;
-scene.add(plane);
-camera.position.z = 60;
-
-// Animation Loop
-let time = 0;
-function animate() {
-  requestAnimationFrame(animate);
-  time += 0.01;
-
-  // Wave Logic
-  const positions = plane.geometry.attributes.position.array;
-  for (let i = 0; i < positions.length; i += 3) {
-    const x = positions[i];
-    const y = positions[i + 1];
-    positions[i + 2] = Math.sin(x * 0.1 + time) * 2 + Math.cos(y * 0.1 + time) * 2;
-  }
-  plane.geometry.attributes.position.needsUpdate = true;
-
-  // Scroll based rotation
-  plane.rotation.z = window.pageYOffset * 0.0005;
-  plane.position.y = -20 - (window.pageYOffset * 0.01);
-
-  renderer.render(scene, camera);
-}
-animate();
 
 window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
     initNeural();
 });
 
@@ -169,8 +126,8 @@ const heroContent = document.querySelector('.hero-content');
 const videoBg = document.querySelector('.video-bg');
 
 document.addEventListener('mousemove', (e) => {
-    const xAxis = (window.innerWidth / 2 - e.clientX) / 30;
-    const yAxis = (window.innerHeight / 2 - e.clientY) / 30;
+    const xAxis = (window.innerWidth / 2 - e.clientX) / 300;
+    const yAxis = (window.innerHeight / 2 - e.clientY) / 300;
     
     // Tilt the panel
     gsap.to(glassPanel, {
@@ -207,18 +164,17 @@ document.addEventListener('mousemove', (e) => {
     });
 });
 
-// Scroll Based Flip
+// Scroll Based Exit (Gentler)
 gsap.to(glassPanel, {
     scrollTrigger: {
         trigger: ".hero",
         start: "top top",
-        end: "bottom top",
-        scrub: 1,
+        end: "bottom center",
+        scrub: true,
     },
-    rotateX: 90,
+    y: -100,
     opacity: 0,
-    scale: 0.8,
-    z: -500,
+    scale: 0.95,
     ease: "none"
 });
 
@@ -243,61 +199,64 @@ gsap.to(".hero-lines", {
     ease: "none"
 });
 
-// ── SECTION ZOOM & PREMIUM FADE ──
-const sections = document.querySelectorAll('section:not(.hero)');
-sections.forEach(section => {
-    // Single Timeline for entry and exit
-    const tl = gsap.timeline({
-        scrollTrigger: {
-            trigger: section,
-            start: "top bottom", // Starts when top of section hits bottom of screen
-            end: "bottom top",    // Ends when bottom of section hits top of screen
-            scrub: 1.5,
-            toggleActions: "play reverse play reverse"
-        }
+// Nav interaction & Hero Entrance
+window.addEventListener('load', () => {
+    // Initial Reveal
+    const tl = gsap.timeline();
+    
+    tl.to("nav", { y: 0, opacity: 1, duration: 1, ease: "expo.out" })
+      .from(".glass-panel", { 
+          scale: 1.05, 
+          y: 50,
+          opacity: 0, 
+          duration: 1.2, 
+          ease: "expo.out" 
+      }, "-=0.5")
+      .from(".hero-content > *", {
+          opacity: 0,
+          y: 20,
+          stagger: 0.15,
+          duration: 1,
+          ease: "power3.out"
+      }, "-=0.8")
+      .add(() => {
+          document.querySelector('.glass-panel').classList.add('sweep');
+      }, "-=0.5");
+
+    // Magnetic Buttons
+    const magButtons = document.querySelectorAll('.btn-primary, .btn-secondary');
+    magButtons.forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            gsap.to(btn, { x: x * 0.3, y: y * 0.3, duration: 0.5, ease: "power2.out" });
+        });
+        btn.addEventListener('mouseleave', () => {
+            gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: "elastic.out(1, 0.3)" });
+        });
     });
 
-    tl.fromTo(section, 
-        { scale: 0.8, opacity: 0, y: 100 },
-        { scale: 1, opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }
-    )
-    .to(section, 
-        { scale: 1.2, opacity: 0, filter: "blur(20px)", y: -100, duration: 0.5, ease: "power3.in" },
-        "+=0.2" // Wait a bit before exiting
-    );
+    // Smooth reveal for sections
+    const sections = document.querySelectorAll('section:not(.hero)');
+    sections.forEach(section => {
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: section,
+                start: "top 90%",
+                end: "bottom 10%",
+                scrub: 0.5,
+            }
+        })
+        .fromTo(section, 
+            { scale: 0.98, opacity: 0, y: 30 },
+            { scale: 1, opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }
+        )
+        .to(section, 
+            { scale: 1.02, opacity: 0, y: -30, duration: 0.8, ease: "power2.in" },
+            "+=0.2"
+        );
+    });
 });
 
-// Nav interaction
-// Always visible as per user request
-window.addEventListener('load', () => {
-    gsap.to("nav", { y: 0, opacity: 1, duration: 0.5 });
-});
 
-// ── DYNAMIC BACKGROUND SHIFT ──
-gsap.to("#bg-overlay", {
-    scrollTrigger: {
-        trigger: "body",
-        start: "top top",
-        end: "bottom bottom",
-        scrub: true
-    },
-    background: "linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(10,20,10,0.9) 50%, rgba(20,10,30,0.95) 100%)",
-    ease: "none"
-});
-
-// ── HERO ENTRANCE ──
-const tl = gsap.timeline();
-tl.from(".glass-panel", {
-    opacity: 0,
-    y: 100,
-    rotateX: -20,
-    duration: 1.5,
-    ease: "power4.out"
-})
-.from(".hero-content > *", {
-    opacity: 0,
-    y: 20,
-    stagger: 0.1,
-    duration: 1,
-    ease: "power3.out"
-}, "-=1");
